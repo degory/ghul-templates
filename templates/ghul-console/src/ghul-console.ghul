@@ -1,0 +1,11 @@
+namespace Program is
+    use IO.Std;
+
+    class Main is
+        entry() static is
+            @IL.entrypoint()
+
+            IO.Std.write_line("hello world");
+        si
+    si
+si
