@@ -27,8 +27,7 @@ You'll need to install the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/
 ## Recommended
 
 - Visual Studio Code
-- The [ghūl language Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=degory.ghul), which will give you rich
-  - language support including:
+- The [ghūl language Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=degory.ghul), which will give you rich language support including:
   - syntax highlighting
   - error highlighting as you type
   - code snippets
