@@ -129,9 +129,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Fix permissions
-      run: chmod +r -R .
-
     - name: Create package
       run: dotnet pack -p:Version=${{ needs.version.outputs.package }}
 
