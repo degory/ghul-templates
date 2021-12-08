@@ -7,7 +7,7 @@
     <Description>Templates for creating ghūl applications</Description>
     <PackageTags>dotnet-new;templates;ghul;ghūl;degory</PackageTags>
 
-    <PackageOutputPath>./nupkg</PackageOutputPath>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/degory/ghul-templates</RepositoryUrl>
     <DebugType>None</DebugType>
 
@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="\"/>  
+    <None Include="LICENSE" Pack="true" PackagegPath="\" />
 
     <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
     <Compile Remove="**\*" />
