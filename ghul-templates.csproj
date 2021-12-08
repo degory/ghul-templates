@@ -1,9 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>0.0.1</PackageVersion>
     <PackageId>ghul.templates</PackageId>
-    <Title>ghūl project templates</Title>
+    <Title>ghūl templates</Title>
     <Authors>degory</Authors>
     <Description>Templates for creating ghūl applications</Description>
     <PackageTags>dotnet-new;templates;ghul;ghūl;degory</PackageTags>
@@ -12,7 +11,7 @@
     <RepositoryUrl>https://github.com/degory/ghul-templates</RepositoryUrl>
     <DebugType>None</DebugType>
 
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
 
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -21,6 +20,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\"/>  
+
     <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
     <Compile Remove="**\*" />
   </ItemGroup>
