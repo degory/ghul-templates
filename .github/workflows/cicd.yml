@@ -101,6 +101,7 @@ jobs:
       run: dotnet build
 
     - name: Run
+      id: run
       working-directory: templates/ghul-console
       run: |
         STDOUT=$(dotnet run)
@@ -151,37 +152,38 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: download template package
+    - name: Download template package
       uses: actions/download-artifact@v2
       with:
         name: package
         path: nupkg
 
-    - name: install templates from the package
+    - name: Install templates from the package
       run: dotnet new -i nupkg/ghul.templates.${{ needs.version.outputs.package }}.nupkg
       
-    - name: create project folder
+    - name: Create project folder
       run: mkdir project
 
-    - name: instantiate the console template
+    - name: Instantiate the console template
       run: dotnet tool new ghul-template
       working-directory: project
 
-    - name: local .NET tools restore
+    - name: Local .NET tools restore
       run: dotnet tool restore
       working-directory: project
 
-    - name: build
+    - name: Build
       run: dotnet build
       working-directory: project
 
-    - name: run
+    - name: Run
+      id: run
       run: |
         STDOUT=$(dotnet run)
         echo "::set-output name=stdout::${STDOUT}"
       working-directory: project
 
-    - name: test
+    - name: Test
       run: |
         if [ "${STDOUT}" != "Hello world!" ] ; then
           exit 1
@@ -203,7 +205,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: download template package
+    - name: Download template package
       uses: actions/download-artifact@v2
       with:
         name: package
@@ -220,4 +222,3 @@ jobs:
       run: dotnet nuget push ./nupkg/*.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols true
       env:
         NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
-
