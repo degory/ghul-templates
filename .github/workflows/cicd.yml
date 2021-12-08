@@ -117,7 +117,7 @@ jobs:
         STDOUT: ${{ steps.run.outputs.stdout }}
         
   build:
-    name: Build NuGet package
+    name: Build the package
     runs-on: ubuntu-latest
 
     container:
@@ -140,7 +140,7 @@ jobs:
         path: nupkg
 
   test-package:
-    name: Test the NuGet package
+    name: Test the package
     runs-on: ubuntu-latest
 
     container: 
@@ -165,7 +165,7 @@ jobs:
       run: mkdir project
 
     - name: Instantiate the console template
-      run: dotnet tool new ghul-template
+      run: dotnet new ghul-template
       working-directory: project
 
     - name: Local .NET tools restore
@@ -193,7 +193,7 @@ jobs:
         STDOUT: ${{ steps.run.outputs.stdout }}
 
   publish-package:
-    name: Test the console application from package
+    name: Publish the package
     runs-on: ubuntu-latest
 
     container: 
