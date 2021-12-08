@@ -154,7 +154,7 @@ jobs:
     - name: download template package
       uses: actions/download-artifact@v2
       with:
-        name: ghul-compiler-package
+        name: package
         path: nupkg
 
     - name: install templates from the package
@@ -206,7 +206,7 @@ jobs:
     - name: download template package
       uses: actions/download-artifact@v2
       with:
-        name: ghul-compiler-package
+        name: package
         path: nupkg
 
     - name: Publish package to GitHub
