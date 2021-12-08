@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- this is a .csproj wrapper for the actual .ghulproj, because Dependabot does not recognize .ghulproj as an MSBuild project file -->
+  <Import Project="templates/ghul-console/ghul-console.ghulproj" />
+</Project>
