@@ -1,11 +1,4 @@
-namespace Program is
-    use IO.Std;
+// This is a very simple ghul application: it simply writes some text to the console     
+entry() =>
+    IO.Std.out.write_line("Hello world!");
 
-    class Main is
-        entry() static is
-            @IL.entrypoint()
-
-            IO.Std.write_line("hello world");
-        si
-    si
-si

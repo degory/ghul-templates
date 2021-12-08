@@ -16,7 +16,7 @@
     {
       "modifiers": [
         {
-          "exclude": [ ".git/**", "obj/**", "bin/**", "*.dll", "out.il", ".assemblies.json" ]
+          "exclude": [ ".git/**", "obj/**", "bin/**", ".github/**", ".dependabot/**", ".devcontainer/**", "*.dll", "out.il", ".assemblies.json" ]
         }
       ]
     }

@@ -1,12 +1,19 @@
-# .NET objects
-obj/
-bin/
+# project specific
+*.vsix
 
-**/*.runtimeconfig.json
-**/*.il
-**/*.dll
-**/*.exe
-**/*.exe.mdb
+.build.rsp
+
+**/obj/
+**/bin/
+**/nupkg/
 
 .assemblies.json
-.build.rsp
+*.runtimeconfig.json
+*.exe
+*.dll
+*.pdb
+*.mdb
+**/out.txt
+**/output.txt
+
+**/out.il
