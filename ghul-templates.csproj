@@ -7,13 +7,15 @@
     <Description>Templates for creating ghūl applications</Description>
     <PackageTags>dotnet-new;templates;ghul;ghūl;degory</PackageTags>
     <PackageOutputPath>./nupkg</PackageOutputPath>
-
+    <PackageProjectUrl>https://github.com/degory/ghul-templates</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/degory/ghul-templates</RepositoryUrl>
+    <RepositoryUrl>https://github.com/degory/ghul-templates.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>main</RepositoryBranch>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>    
     <DebugType>None</DebugType>
+    <PackageTags>ghul;ghūl;dotnet;.NET;template</PackageTags>
 
     <TargetFramework>net6.0</TargetFramework>
 
