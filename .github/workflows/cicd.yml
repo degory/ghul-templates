@@ -11,10 +11,13 @@ on:
 
   pull_request:
   push:
-    branches:
-      - "main"
+    branches: [master, main]
+
 env:
   CI: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  DOTNET_NOLOGO: 1
 
 jobs:
   version:
@@ -31,6 +34,7 @@ jobs:
     - name: Create version number
       id: create_version_number
       uses: anothrNick/github-tag-action@1.33.0
+      if: ${{ github.actor != 'dependabot[bot]' }}      
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
@@ -42,7 +46,9 @@ jobs:
       run: |
         VALID_VERSION_REGEX="^v[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9]+\.[0-9]+)?$"
 
-        if [ ! -z "${MANUAL_VERSION}" ] ; then
+        if [ "${{ github.actor }}" == "dependabot[bot]" ] ; then
+          VERSION=v0.0.1-dependabot.$(date '+%Y%m%d%H%M%S')
+        elif [ ! -z "${MANUAL_VERSION}" ] ; then
           echo "User supplied version: ${MANUAL_VERSION}"
 
           VERSION="${MANUAL_VERSION}"
@@ -73,33 +79,146 @@ jobs:
         echo "tag version: ${{ steps.pick_version.outputs.tag }}"
         echo "package version: ${{ steps.pick_version.outputs.package }}"
 
-  build:
-    name: Build and publish NuGet package
+  test-console-application:
+    name: Test the console application in-situ
     runs-on: ubuntu-latest
-    container: ghul/devcontainer:dotnet
+
+    container: 
+      image: mcr.microsoft.com/dotnet/sdk:6.0
+
     timeout-minutes: 10
     needs: [version]
 
     steps:
     - uses: actions/checkout@v2
-                    
+
+    - name: .NET tool restore
+      working-directory: templates/ghul-console
+      run: dotnet tool restore
+
+    - name: Build
+      working-directory: templates/ghul-console
+      run: dotnet build
+
+    - name: Run
+      id: run
+      working-directory: templates/ghul-console
+      run: |
+        STDOUT=$(dotnet run)
+        echo "::set-output name=stdout::${STDOUT}"
+
+    - name: Test
+      run: |
+        if [ "${STDOUT}" != "Hello world!" ] ; then
+          exit 1
+        fi
+
+      env:
+        STDOUT: ${{ steps.run.outputs.stdout }}
+        
+  build:
+    name: Build NuGet package
+    runs-on: ubuntu-latest
+
+    container:
+      image: mcr.microsoft.com/dotnet/sdk:6.0
+
+    timeout-minutes: 10
+    needs: [version]
+
+    steps:
+    - uses: actions/checkout@v2
+
     - name: Create package
       run: dotnet pack -p:Version=${{ needs.version.outputs.package }}
 
-    - name: Upload package artefact
+    - name: Upload .NET package artefact
       if: ${{ github.event_name != 'push' }}
       uses: actions/upload-artifact@v2
       with:
         name: package
         path: nupkg
 
+  test-package:
+    name: Test the NuGet package
+    runs-on: ubuntu-latest
+
+    container: 
+      image: mcr.microsoft.com/dotnet/sdk:6.0
+
+    timeout-minutes: 10
+    needs: [version,build]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Download template package
+      uses: actions/download-artifact@v2
+      with:
+        name: package
+        path: nupkg
+
+    - name: Install templates from the package
+      run: dotnet new -i nupkg/ghul.templates.${{ needs.version.outputs.package }}.nupkg
+      
+    - name: Create project folder
+      run: mkdir project
+
+    - name: Instantiate the console template
+      run: dotnet tool new ghul-template
+      working-directory: project
+
+    - name: Local .NET tools restore
+      run: dotnet tool restore
+      working-directory: project
+
+    - name: Build
+      run: dotnet build
+      working-directory: project
+
+    - name: Run
+      id: run
+      run: |
+        STDOUT=$(dotnet run)
+        echo "::set-output name=stdout::${STDOUT}"
+      working-directory: project
+
+    - name: Test
+      run: |
+        if [ "${STDOUT}" != "Hello world!" ] ; then
+          exit 1
+        fi
+      working-directory: project
+      env:
+        STDOUT: ${{ steps.run.outputs.stdout }}
+
+  publish-package:
+    name: Test the console application from package
+    runs-on: ubuntu-latest
+
+    container: 
+      image: mcr.microsoft.com/dotnet/sdk:6.0
+
+    timeout-minutes: 10
+    needs: [test-package]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Download template package
+      uses: actions/download-artifact@v2
+      with:
+        name: package
+        path: nupkg
+
     - name: Publish package to GitHub
+      if: ${{ github.actor != 'dependabot[bot]' }}
       run: dotnet nuget push ./nupkg/*.nupkg -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/degory/index.json --skip-duplicate --no-symbols true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Publish package to NuGet
-      if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
+      if: ${{ github.event_name == 'push' }}
       run: dotnet nuget push ./nupkg/*.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols true
       env:
         NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
