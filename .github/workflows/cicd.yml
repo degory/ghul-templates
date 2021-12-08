@@ -92,9 +92,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: .NET tools restore
+    - name: .NET tool restore
       working-directory: templates/ghul-console
-      run: dotnet tools restore
+      run: dotnet tool restore
 
     - name: Build
       working-directory: templates/ghul-console
@@ -168,7 +168,7 @@ jobs:
       working-directory: project
 
     - name: local .NET tools restore
-      run: dotnet tools restore
+      run: dotnet tool restore
       working-directory: project
 
     - name: build
