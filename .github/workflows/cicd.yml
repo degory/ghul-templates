@@ -108,12 +108,12 @@ jobs:
 
     - name: Test
       run: |
-        if [ "${OUTPUT}" != "Hello world!" ] ; then
+        if [ "${STDOUT}" != "Hello world!" ] ; then
           exit 1
         fi
 
       env:
-        OUTPUT: ${{ steps.run.outputs.stdout }}
+        STDOUT: ${{ steps.run.outputs.stdout }}
         
   build:
     name: Build NuGet package
@@ -146,7 +146,7 @@ jobs:
       image: mcr.microsoft.com/dotnet/sdk:6.0
 
     timeout-minutes: 10
-    needs: [build]
+    needs: [version,build]
 
     steps:
     - uses: actions/checkout@v2
@@ -183,12 +183,12 @@ jobs:
 
     - name: test
       run: |
-        if [ "${OUTPUT}" != "Hello world!" ] ; then
+        if [ "${STDOUT}" != "Hello world!" ] ; then
           exit 1
         fi
       working-directory: project
       env:
-        OUTPUT: ${{ steps.run.outputs.stdout }}
+        STDOUT: ${{ steps.run.outputs.stdout }}
 
   publish-package:
     name: Test the console application from package
