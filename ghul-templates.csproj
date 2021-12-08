@@ -6,6 +6,7 @@
     <Authors>degory</Authors>
     <Description>Templates for creating ghūl applications</Description>
     <PackageTags>dotnet-new;templates;ghul;ghūl;degory</PackageTags>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
 
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/degory/ghul-templates</RepositoryUrl>
