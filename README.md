@@ -1,17 +1,20 @@
 # ghūl console application template
 
-This is a ['dotnet new' template](https://docs.microsoft.com/en-us/dotnet/core/tools/custom-templates) for quick-starting a [ghūl language](https://ghul.io) .NET 6.0 console application project.
+This is a ['dotnet new' template](https://docs.microsoft.com/en-us/dotnet/core/tools/custom-templates) for quick-starting a .NET 6.0 console application project written in the [ghūl programming language](https://ghul.io).
 
-Note that this template does not include things like GitHub Actions workflows, development container config, Dependabot config, etc. For a GitHub repository template that does include all those things, see the [ghūl repository template](https://github.com/degory/ghul-repository-template) repo.
-
+Note that this template does not include things like GitHub Actions workflows, development container config, Dependabot config, unit tests, etc. For a GitHub repository template that does include all those things, see the [ghūl repository template](https://github.com/degory/ghul-repository-template) repo.
 
 ## CI/CD status
 
  [![CI/CD](https://github.com/degory/ghul-console-template/workflows/CI/CD/badge.svg?branch=main)](https://github.com/degory/ghul-application-template/actions?query=workflow%3ACI%2FCD)
 
+## Package
+
+[ghul.templates](https://www.nuget.org/packages/ghul.templates/)
+
 ## Prerequisites
 
-You can build ghūl applications on any host that supports the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0). This template will work with any of:
+This template will create a skeleton ghūl application that can be built on any host that supports the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0), including any of:
 - GitHub [Codespaces](https://github.com/features/codespaces)
 - Windows 10
 - Windows 10 with [Docker Desktop](https://www.docker.com/products/docker-desktop) and either the [ghūl development container](https://hub.docker.com/r/ghul/devcontainer/tags) or another image that includes the .NET 6.0 SDK
@@ -37,28 +40,43 @@ You'll need to install the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/
   - go to symbol in file
   - go to symbol in workspace
 
-## Using this template
+## Installing the template
 
-The template is distributed as a NuGet package containing a .NET template
+The template is distributed as a NuGet package containing a .NET template. Before you can use it, you need to install the template package:
 
-
+```
+$ dotnet new --install ghul.templates
+```
 
 ## Instantiating the template
 
 Start by creating a new folder for your project and `cd` into it
-
 ```
-$ mkdir my-console-project
-$ cd my-console-project
-```
-
-Then use `dotnet new` to initialize a new instance of this template in your project folder
-
+$ mkdir example
+$ cd example
 ```
 
+Then use `dotnet new` to initialize a new instance of this template in your project folder:
+```
+$ dotnet new ghul-console
 ```
 
-## Getting started  
+This will create a `.ghulproj` MSBuild project file, a `.ghul` source file and some other supporting files:
+```
+$ find
+
+./src
+./src/example.ghul
+./src/README.md
+./README.md
+./.config
+./.config/dotnet-tools.json
+./.vscode
+./.vscode/tasks.json
+./example.ghulproj
+```
+
+## Building the template application  
 
 ghūl applications are standard .NET applications using familiar MSBuild projects and .NET SDK commands such as `dotnet build` and `dotnet pack`. However, before these commands will work, you do need to install the [ghūl compiler](https://www.nuget.org/packages/ghul.compiler/)
 
@@ -92,7 +110,7 @@ Note: if you do install the compiler globally, you will also need to change the 
     <GhulCompiler>ghul-compiler</GhulCompiler>
 ```
 
-### Building the application
+### Building and running the application
 
 Just use the normal dotnet commands:
 
