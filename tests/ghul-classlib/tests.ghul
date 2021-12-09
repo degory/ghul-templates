@@ -1,0 +1,26 @@
+namespace ClassLibTemplate.Tests is
+    entry();
+
+    class HELLO_WORLD_GREETER_Tests is
+        @test()
+
+        init() is
+        si
+
+        Given_a_TextWriter__Greeter_greet__should_write_Hello_world_to_that_writer() is
+            @test()
+            
+            let string_writer = new IO.StringWriter();
+
+            let test_object = new HELLO_WORLD_GREETER(string_writer);
+
+            test_object.greet();
+
+            assert 
+                string_writer
+                    .to_string()
+                    .trim()
+                =~ "Hello world!";
+        si
+    si    
+si

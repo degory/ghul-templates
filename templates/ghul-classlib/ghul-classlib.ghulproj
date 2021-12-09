@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+
+    <Title>Example ghūl class library template</Title>
+    <PackageDescription>Example ghūl programming language class library project</PackageDescription>
+    <RepositoryUrl>https://github.com/degory/ghul-templates</RepositoryUrl>
+    <PackageId>example.classlib</PackageId>
+    <Authors>Some Person</Authors>
+    <Company>Some Company</Company>
+    <Version>0.0.1-alpha.1</Version>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <LicenseExpression>MIT</LicenseExpression>
+
+    <GhulCompiler>dotnet tool run ghul-compiler</GhulCompiler>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <GhulSources Include="src/**/*.ghul" />
+    <None Include="README.md" Pack="true" PackagePath="\"/>
+
+    <PackageReference Include="ghul.runtime" Version="0.0.10" />
+    <PackageReference Include="ghul.pipes" Version="0.0.17" />
+    <PackageReference Include="ghul.targets" Version="0.0.6" />
+  </ItemGroup>
+</Project>
