@@ -1,6 +1,6 @@
 # ghūl console application template
 
-This is a ['dotnet new' template](https://docs.microsoft.com/en-us/dotnet/core/tools/custom-templates) for quick-starting a .NET 6.0 console application project written in the [ghūl programming language](https://ghul.io).
+This is a ['dotnet new' template](https://docs.microsoft.com/en-us/dotnet/core/tools/custom-templates) for quick-starting a .NET 6.0 class library project written in the [ghūl programming language](https://ghul.io).
 
 Note that this template does not include things like GitHub Actions workflows, development container config, Dependabot config, unit tests, etc. For a GitHub repository template that does include all those things, see the [ghūl repository template](https://github.com/degory/ghul-repository-template) repo.
 
@@ -14,7 +14,7 @@ Note that this template does not include things like GitHub Actions workflows, d
 
 ## Prerequisites
 
-This template will create a skeleton ghūl application that can be built on any host that supports the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0), including any of:
+This template will create a skeleton ghūl class library that can be built on any host that supports the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0), including any of:
 - GitHub [Codespaces](https://github.com/features/codespaces)
 - Windows 10
 - Windows 10 with [Docker Desktop](https://www.docker.com/products/docker-desktop) and either the [ghūl development container](https://hub.docker.com/r/ghul/devcontainer/tags) or another image that includes the .NET 6.0 SDK
@@ -75,9 +75,9 @@ $ find
 ./example.ghulproj
 ```
 
-## Building the template application  
+## Building the template package
 
-ghūl applications are standard .NET applications using familiar MSBuild projects and .NET SDK commands such as `dotnet build` and `dotnet pack`. However, before these commands will work, you do need to install the [ghūl compiler](https://www.nuget.org/packages/ghul.compiler/)
+ghūl class libraries are standard .NET assemblies and use familiar MSBuild projects and .NET SDK commands such as `dotnet build` and `dotnet pack`. However, before these commands will work, you do need to install the [ghūl compiler](https://www.nuget.org/packages/ghul.compiler/)
 
 ### Installing the ghūl compiler
 
@@ -93,7 +93,7 @@ This template includes a local tool manifest in the `.config` folder which inclu
 $ dotnet tool restore
 ```
 
-Note: if you're using Visual Studio Code and the ghūl extension, the  extension will do this for you automatically when you open the project folder
+Note: if you're using Visual Studio Code and the ghūl extension, the extension will do this for you automatically when you open the project folder
 
 #### Global tool install
 
@@ -109,9 +109,9 @@ Note: if you do install the compiler globally, you will also need to change the 
     <GhulCompiler>ghul-compiler</GhulCompiler>
 ```
 
-### Building and running the application
+### Building and packing the class library
 
-Just use the normal dotnet commands:
+Use the normal dotnet commands:
 
 ```
 $ dotnet build
@@ -119,10 +119,5 @@ $ dotnet build
 ```
 $ dotnet pack
 ```
-```
-$ dotnet run
-```
 
-etc. etc.
-
-In Visual Studio Code, run the default build task (`<ctrl>` + `<shift>` + `B` and select `build`) is set up to run `dotnet build`
+In Visual Studio Code, run the `pack` build task (`<ctrl>` + `<shift>` + `B` and select `pack`), which is configured to run `dotnet pack`

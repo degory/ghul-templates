@@ -1,0 +1,17 @@
+namespace ClassLibTemplate is
+    entry();
+
+    trait Greeter is
+        greet();
+    si
+    
+    class HELLO_WORLD_GREETER: Greeter is
+        _writer: IO.TextWriter;
+
+        init(writer: IO.TextWriter) is
+            _writer = writer;
+        si
+
+        greet() => _writer.write_line("Hello world!");
+    si    
+si

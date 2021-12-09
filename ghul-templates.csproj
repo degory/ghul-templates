@@ -4,7 +4,8 @@
     <PackageId>ghul.templates</PackageId>
     <Title>ghūl templates</Title>
     <Authors>degory</Authors>
-    <Description>Templates for creating ghūl applications</Description>
+    <Version>0.0.11-alpha.2</Version>
+    <Description>Templates for creating ghūl projects</Description>
     <PackageTags>dotnet-new;templates;ghul;ghūl;degory</PackageTags>
     <PackageOutputPath>./nupkg</PackageOutputPath>
     <PackageProjectUrl>https://github.com/degory/ghul-templates</PackageProjectUrl>
@@ -16,6 +17,7 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>    
     <DebugType>None</DebugType>
     <PackageTags>ghul;ghūl;dotnet;.NET;template</PackageTags>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
 
     <TargetFramework>net6.0</TargetFramework>
 

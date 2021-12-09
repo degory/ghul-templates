@@ -138,8 +138,8 @@ jobs:
         name: package
         path: nupkg
 
-  test-package:
-    name: Test the package
+  test-console-template:
+    name: Test the console template
     runs-on: ubuntu-latest
 
     container: 
@@ -191,6 +191,54 @@ jobs:
       env:
         STDOUT: ${{ steps.run.outputs.stdout }}
 
+  test-classlib-template:
+    name: Test the classlib template
+    runs-on: ubuntu-latest
+
+    container: 
+      image: mcr.microsoft.com/dotnet/sdk:6.0
+
+    timeout-minutes: 10
+    needs: [version,build]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Download template package
+      uses: actions/download-artifact@v2
+      with:
+        name: package
+        path: nupkg
+
+    - name: Install templates from the package
+      run: dotnet new -i nupkg/ghul.templates.${{ needs.version.outputs.package }}.nupkg
+      
+    - name: Create project folder
+      run: mkdir project
+
+    - name: Instantiate the classlib template
+      run: dotnet new ghul-classlib
+      working-directory: project
+
+    - name: Local .NET tools restore (template project)
+      run: dotnet tool restore
+      working-directory: project
+
+    - name: Create temporary package folder
+      run: mkdir -p tests/packages
+
+    - name: Pack
+      run: dotnet pack -o ../tests/packages
+      working-directory: project
+
+    - name: Local .NET tools restore (test project)
+      run: dotnet tool restore
+      working-directory: tests/ghul-classlib
+
+    - name: Test
+      run: dotnet test
+      working-directory: tests/ghul-classlib
+
   publish-package:
     name: Publish the package
     runs-on: ubuntu-latest
@@ -199,7 +247,7 @@ jobs:
       image: mcr.microsoft.com/dotnet/sdk:6.0
 
     timeout-minutes: 10
-    needs: [test-package]
+    needs: [test-console-template,test-classlib-template]
 
     steps:
     - uses: actions/checkout@v2
