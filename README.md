@@ -1,7 +1,8 @@
 # ghūl 'dotnet new' templates
 
 [![CI/CD](https://img.shields.io/github/workflow/status/degory/ghul-templates/CICD)](https://github.com/degory/ghul-templates/actions?query=workflow%3ACICD)
-[![Version](https://img.shields.io/github/v/release/degory/ghul-templates?label=version)](https://github.com/degory/ghul-templates/releases)
+[![NuGet version (ghul.templates)](https://img.shields.io/nuget/v/ghul.templates.svg)](https://www.nuget.org/packages/ghul.templates/)
+[![Release](https://img.shields.io/github/v/release/degory/ghul-templates?label=release)](https://github.com/degory/ghul-templates/releases)
 [![Release Date](https://img.shields.io/github/release-date/degory/ghul-templates)](https://github.com/degory/ghul-templates/releases) 
 [![Issues](https://img.shields.io/github/issues/degory/ghul-templates)](https://github.com/degory/ghul-templates/issues) 
 [![License](https://img.shields.io/github/license/degory/ghul-templates)](https://github.com/degory/ghul-templates/blob/main/LICENSE)
@@ -27,7 +28,7 @@ Hello world!
 
 These templates create a skeleton ghūl programming language projects that can be built on any host that supports the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
-You'll need to install the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0) or use a container that includes it such as the [ghūl development image](https://hub.docker.com/r/ghul/devcontainer/tags) or a recent Microsoft .NET SDK image
+You'll need to install the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0), or use a container that includes it like the [ghūl development image](https://hub.docker.com/r/ghul/devcontainer/tags) or a recent Microsoft .NET SDK image
 
 ## Recommended
 
