@@ -1,28 +1,34 @@
 # ghūl 'dotnet new' templates
 
+[![CI/CD](https://img.shields.io/github/workflow/status/degory/ghul-templates/CICD)](https://github.com/degory/ghul-templates/actions?query=workflow%3ACICD)
+[![NuGet version (ghul.templates)](https://img.shields.io/nuget/v/ghul.templates.svg)](https://www.nuget.org/packages/ghul.templates/)
+[![Release](https://img.shields.io/github/v/release/degory/ghul-templates?label=release)](https://github.com/degory/ghul-templates/releases)
+[![Release Date](https://img.shields.io/github/release-date/degory/ghul-templates)](https://github.com/degory/ghul-templates/releases) 
+[![Issues](https://img.shields.io/github/issues/degory/ghul-templates)](https://github.com/degory/ghul-templates/issues) 
+[![License](https://img.shields.io/github/license/degory/ghul-templates)](https://github.com/degory/ghul-templates/blob/main/LICENSE)
+[![ghūl](https://img.shields.io/badge/gh%C5%ABl-100%25!-information)](https://ghul.io)
+
 These are ['dotnet new' templates](https://docs.microsoft.com/en-us/dotnet/core/tools/custom-templates) for quick-starting a console application or class library .NET 6.0 project written in the [ghūl programming language](https://ghul.io).
 
 Note that these templates do not include things like GitHub Actions workflows, development container config, Dependabot config, unit tests, etc. For a GitHub repository template that does include all those things, see the [ghūl repository template](https://github.com/degory/ghul-repository-template) repo.
 
-## CI/CD status
+## Quick start
 
-[![CI/CD](https://github.com/degory/ghul-templates/workflows/CI/CD/badge.svg?branch=main)](https://github.com/degory/ghul-templates/actions?query=workflow%3ACI%2FCD)
-
-## Package
-
-[ghul.templates](https://www.nuget.org/packages/ghul.templates/)
+```
+$ dotnet new --install ghul.templates
+$ mkdir my-console-project
+$ cd my-console-project
+$ dotnet new ghul-console
+The template "ghūl console application" was created successfully.
+$ dotnet run
+Hello world!
+```
 
 ## Prerequisites
 
-This template will create a skeleton ghūl programming language project that can be built on any host that supports the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0), including any of:
-- GitHub [Codespaces](https://github.com/features/codespaces)
-- Windows 10
-- Windows 10 with [Docker Desktop](https://www.docker.com/products/docker-desktop) and either the [ghūl development container](https://hub.docker.com/r/ghul/devcontainer/tags) or another image that includes the .NET 6.0 SDK
-- Windows 10 with [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-win10)  
-- Linux with
-- Linux with Docker and [ghūl development container](https://hub.docker.com/r/ghul/devcontainer/tags) or another image that includes the .NET 6.0 SDK
+These templates create a skeleton ghūl programming language projects that can be built on any host that supports the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
-You'll need to install the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0) or, for the Docker options, make sure you're using an image that includes it (try the [ghūl development image](https://hub.docker.com/r/ghul/devcontainer/tags) or the Microsoft .NET SDK image)
+You'll need to install the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0), or use a container that includes it like the [ghūl development image](https://hub.docker.com/r/ghul/devcontainer/tags) or a recent Microsoft .NET SDK image
 
 ## Recommended
 
@@ -81,7 +87,7 @@ $ find
 ./example.ghulproj
 ```
 
-## Building the template application or package
+## Building your ghūl application or package
 
 ghūl applications are standard .NET applications using familiar MSBuild projects and .NET SDK commands such as `dotnet build` and `dotnet pack`. However, before these commands will work, you do need to install the [ghūl compiler](https://www.nuget.org/packages/ghul.compiler/)
 
@@ -130,7 +136,5 @@ And, for the console application template:
 ```
 $ dotnet run
 ```
-
-etc. etc.
 
 In Visual Studio Code, run the build task (`<ctrl>` + `<shift>` + `B`), which is set up to run `dotnet build` or `dotnet pack`
