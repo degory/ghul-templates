@@ -16,23 +16,33 @@ Note that these templates do not include things like GitHub Actions workflows, d
 
 ```
 $ dotnet new --install ghul.templates
+The following template packages will be installed:
+   ghul.templates
+
+Success: ghul.templates::0.0.12 installed the following templates:
+Template Name               Short Name     Language  Tags   
+--------------------------  -------------  --------  -------
+ghūl class library package  ghul-classlib  ghūl      Console
+ghūl console application    ghul-console   ghūl      Console
+
 $ mkdir my-console-project
 $ cd my-console-project
 $ dotnet new ghul-console
 The template "ghūl console application" was created successfully.
+
 $ dotnet run
 Hello world!
 ```
 
 ## Prerequisites
 
-These templates create a skeleton ghūl programming language projects that can be built on any host that supports the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
+These templates create skeleton ghūl programming language projects that can be built on any host that supports the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
-You'll need to install the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0), or use a container that includes it like the [ghūl development image](https://hub.docker.com/r/ghul/devcontainer/tags) or a recent Microsoft .NET SDK image
+You'll need to either install the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0), or use a container that includes it like the [ghūl development image](https://hub.docker.com/r/ghul/devcontainer/tags) or a recent Microsoft .NET SDK image
 
 ## Recommended
 
-- Visual Studio Code
+- [Visual Studio Code](https://code.visualstudio.com/)
 - The [ghūl language Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=degory.ghul), which will give you rich language support including:
   - syntax highlighting
   - error highlighting as you type
@@ -91,36 +101,6 @@ $ find
 
 ghūl applications are standard .NET applications using familiar MSBuild projects and .NET SDK commands such as `dotnet build` and `dotnet pack`. However, before these commands will work, you do need to install the [ghūl compiler](https://www.nuget.org/packages/ghul.compiler/)
 
-### Installing the ghūl compiler
-
-(If you're developing in a container using the [ghūl development Docker image](https://hub.docker.com/r/ghul/devcontainer/tags) then you can skip this step)
-
-The ghūl compiler [is packaged](https://www.nuget.org/packages/ghul.compiler/) as a [.NET tool](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools) and can be installed either locally or globally.
-
-#### Local tool install
-
-This template includes a local tool manifest in the `.config` folder which includes the compiler, so you can install the compiler locally simply by restoring local tools:
-
-```
-$ dotnet tool restore
-```
-
-Note: if you're using Visual Studio Code and the ghūl extension, the  extension will do this for you automatically when you open the project folder
-
-#### Global tool install
-
-If you prefer to install the compiler globally, you can run:
-
-```
-$ dotnet tool install --global ghul.compiler
-```
-
-Note: if you do install the compiler globally, you will also need to change the `GhulCompiler` property in your `.ghulproj` file to reference it:
-
-```
-    <GhulCompiler>ghul-compiler</GhulCompiler>
-```
-
 ### Building your project
 
 Just use the normal dotnet commands:
@@ -137,4 +117,40 @@ And, for the console application template:
 $ dotnet run
 ```
 
-In Visual Studio Code, run the build task (`<ctrl>` + `<shift>` + `B`), which is set up to run `dotnet build` or `dotnet pack`
+## the ghūl compiler tool
+
+The ghūl compiler is [packaged](https://www.nuget.org/packages/ghul.compiler/) as a [.NET tool](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools) and can be installed either locally or globally.
+
+### Local tool install
+
+These templates include a local tool manifest in the `.config` folder which includes the compiler. This means the compiler tool will be restored automatically when you build your application, however you can also restore it manually with:
+
+```
+$ dotnet tool restore
+```
+
+To run the compiler local tool directly from the command line, use:
+
+```
+$ dotnet tool run ghul-compiler
+ghūl v0.2.154
+```
+
+### Global tool install
+
+If you prefer to install the compiler globally, you can run:
+
+```
+$ dotnet tool install --global ghul.compiler
+```
+
+This will install the compiler globally allowing you to run it from any folder with
+```
+$ ghul-compiler
+```
+Note: if you do install the compiler globally, you will also need to change the `GhulCompiler` property in your `.ghulproj` file to reference it:
+
+```
+    <GhulCompiler>ghul-compiler</GhulCompiler>
+```
+
