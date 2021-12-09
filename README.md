@@ -8,7 +8,7 @@
 [![License](https://img.shields.io/github/license/degory/ghul-templates)](https://github.com/degory/ghul-templates/blob/main/LICENSE)
 [![ghūl](https://img.shields.io/badge/gh%C5%ABl-100%25!-information)](https://ghul.io)
 
-These are ['dotnet new' templates](https://docs.microsoft.com/en-us/dotnet/core/tools/custom-templates) for quick-starting a console application or class library .NET 6.0 project written in the [ghūl programming language](https://ghul.io).
+These are ['dotnet new' templates](https://docs.microsoft.com/en-us/dotnet/core/tools/custom-templates) for quick-starting a .NET 6.0 console application or class library project written in the [ghūl programming language](https://ghul.io).
 
 Note that these templates do not include things like GitHub Actions workflows, development container config, Dependabot config, unit tests, etc. For a GitHub repository template that does include all those things, see the [ghūl repository template](https://github.com/degory/ghul-repository-template) repo.
 
@@ -99,7 +99,7 @@ $ find
 
 ## Building your ghūl application or package
 
-ghūl applications are standard .NET applications using familiar MSBuild projects and .NET SDK commands such as `dotnet build` and `dotnet pack`. However, before these commands will work, you do need to install the [ghūl compiler](https://www.nuget.org/packages/ghul.compiler/)
+ghūl applications are standard .NET applications using familiar MSBuild projects and .NET SDK commands such as `dotnet build` and `dotnet pack`.
 
 ### Building your project
 
