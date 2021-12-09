@@ -25,7 +25,7 @@ Hello world!
 
 ## Prerequisites
 
-These template create a skeleton ghūl programming language projects that can be built on any host that supports the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
+These templates create a skeleton ghūl programming language projects that can be built on any host that supports the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 You'll need to install the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0) or use a container that includes it such as the [ghūl development image](https://hub.docker.com/r/ghul/devcontainer/tags) or a recent Microsoft .NET SDK image
 
