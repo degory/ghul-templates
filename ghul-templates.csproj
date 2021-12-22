@@ -4,7 +4,7 @@
     <PackageId>ghul.templates</PackageId>
     <Title>ghūl templates</Title>
     <Authors>degory</Authors>
-    <Version>0.0.11-alpha.2</Version>
+    <PackageDescription>Templates for creating ghūl projects</PackageDescription>
     <Description>Templates for creating ghūl projects</Description>
     <PackageTags>dotnet-new;templates;ghul;ghūl;degory</PackageTags>
     <PackageOutputPath>./nupkg</PackageOutputPath>

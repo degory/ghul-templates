@@ -1,6 +1,11 @@
 namespace ClassLibTemplate.Tests is
     entry();
 
+    // NOTE: this test does not need to be extensive or complex because
+    // we're not actually testing the example class library here - we're
+    // testing that, when the class library template is instantiated, it
+    // can be built, packaged, and consumed.
+
     class HELLO_WORLD_GREETER_Tests is
         @test()
 
