@@ -98,7 +98,7 @@ jobs:
       run: dotnet pack -p:Version=${{ needs.version.outputs.package }}
 
     - name: Upload .NET package artefact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: package
         path: nupkg
