@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
 
     <PackageId>example.classlib</PackageId>
 
@@ -11,9 +11,5 @@
 
   <ItemGroup>
     <GhulSources Include="src/**/*.ghul" />
-
-    <PackageReference Include="ghul.runtime" />
-    <PackageReference Include="ghul.pipes" />
-    <PackageReference Include="ghul.targets" />
   </ItemGroup>
 </Project>

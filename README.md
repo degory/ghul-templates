@@ -6,9 +6,9 @@
 [![Release Date](https://img.shields.io/github/release-date/degory/ghul-templates)](https://github.com/degory/ghul-templates/releases) 
 [![Issues](https://img.shields.io/github/issues/degory/ghul-templates)](https://github.com/degory/ghul-templates/issues) 
 [![License](https://img.shields.io/github/license/degory/ghul-templates)](https://github.com/degory/ghul-templates/blob/main/LICENSE)
-[![ghūl](https://img.shields.io/badge/gh%C5%ABl-100%25!-information)](https://ghul.io)
+[![ghūl](https://img.shields.io/badge/gh%C5%ABl-100%25!-information)](https://ghul.dev)
 
-These are ['dotnet new' templates](https://docs.microsoft.com/en-us/dotnet/core/tools/custom-templates) for quick-starting a .NET 6.0 console application or class library project written in the [ghūl programming language](https://ghul.io).
+These are ['dotnet new' templates](https://docs.microsoft.com/en-us/dotnet/core/tools/custom-templates) for quick-starting a .NET 8.0 console application or class library project written in the [ghūl programming language](https://ghul.dev).
 
 Note that these templates do not include things like GitHub Actions workflows, development container config, Dependabot config, unit tests, etc. For a GitHub repository template that does include all those things, see the [ghūl repository template](https://github.com/degory/ghul-repository-template) repo.
 
@@ -36,9 +36,9 @@ Hello world!
 
 ## Prerequisites
 
-These templates create skeleton ghūl programming language projects that can be built on any host that supports the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
+These templates create skeleton ghūl programming language projects that can be built on any host that supports the [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 
-You'll need to either install the [.NET 6.0 SDK](https://dotnet.microsoft.com/download/dotnet/6.0), or use a container that includes it like the [ghūl development image](https://hub.docker.com/r/ghul/devcontainer/tags) or a recent Microsoft .NET SDK image
+You'll need to either install the [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0), or use a container that includes it like the [ghūl development image](https://hub.docker.com/r/ghul/devcontainer/tags) or a recent Microsoft .NET SDK image
 
 ## Recommended
 
