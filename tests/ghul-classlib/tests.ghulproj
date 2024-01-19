@@ -10,10 +10,6 @@
   <ItemGroup>
     <GhulSources Include="**/*.ghul" />
 
-    <PackageReference Include="ghul.runtime" />
-    <PackageReference Include="ghul.pipes" />
-    <PackageReference Include="ghul.targets" />
-
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
     <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />

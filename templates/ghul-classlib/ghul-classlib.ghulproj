@@ -11,9 +11,5 @@
 
   <ItemGroup>
     <GhulSources Include="src/**/*.ghul" />
-
-    <PackageReference Include="ghul.runtime" />
-    <PackageReference Include="ghul.pipes" />
-    <PackageReference Include="ghul.targets" />
   </ItemGroup>
 </Project>
