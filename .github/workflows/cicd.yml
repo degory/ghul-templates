@@ -55,7 +55,7 @@ jobs:
     needs: [version]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: .NET tool restore
       working-directory: templates/ghul-console
@@ -92,7 +92,7 @@ jobs:
     needs: [version]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Create package
       run: dotnet pack -p:Version=${{ needs.version.outputs.package }}
@@ -114,10 +114,10 @@ jobs:
     needs: [version,build]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Download template package
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
         name: package
         path: nupkg
@@ -167,10 +167,10 @@ jobs:
     needs: [version,build]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Download template package
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
         name: package
         path: nupkg
@@ -215,10 +215,10 @@ jobs:
     needs: [test-console-template,test-classlib-template]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Download template package
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
         name: package
         path: nupkg
@@ -244,10 +244,10 @@ jobs:
     if: ${{ github.event_name == 'push' }}
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Download package
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
         name: package
         path: nupkg
