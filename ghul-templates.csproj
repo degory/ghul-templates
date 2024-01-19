@@ -19,7 +19,7 @@
     <PackageTags>ghul;ghūl;dotnet;.NET;template</PackageTags>
     <NoDefaultExcludes>true</NoDefaultExcludes>
 
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
 
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
