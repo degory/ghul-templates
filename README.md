@@ -1,6 +1,6 @@
 # ghūl 'dotnet new' templates
 
-[![CI/CD](https://img.shields.io/github/workflow/status/degory/ghul-templates/CICD)](https://github.com/degory/ghul-templates/actions?query=workflow%3ACICD)
+[![CI/CD](https://img.shields.io/github/actions/workflow/status/degory/ghul-templates/cicd.yml?branch=main)](https://github.com/degory/ghul-templates/actions?query=workflow%3ACICD)
 [![NuGet version (ghul.templates)](https://img.shields.io/nuget/v/ghul.templates.svg)](https://www.nuget.org/packages/ghul.templates/)
 [![Release](https://img.shields.io/github/v/release/degory/ghul-templates?label=release)](https://github.com/degory/ghul-templates/releases)
 [![Release Date](https://img.shields.io/github/release-date/degory/ghul-templates)](https://github.com/degory/ghul-templates/releases) 
