@@ -25,11 +25,15 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
     <NoWarn>$(NoWarn);NU5128</NoWarn>
+
+    <PackageIcon>ghul-logo-icon.png</PackageIcon>
+    <PackageIconUrl>ghul-logo-icon.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="\"/>  
     <None Include="LICENSE*" Pack="true" PackagePath="\" />
+    <None Include="./images/ghul-logo-icon.png" Pack="true" PackagePath=""/>
 
     <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
     <Compile Remove="**\*" />
