@@ -20,20 +20,5 @@
         }
       ]
     }
-  ],
-  "postActions": [
-    {
-      "actionId": "488e31e6-7937-4587-a952-734126b0dbdf",
-      "args": {
-        "executable": "dotnet",
-        "args": "dotnet tool update ghul.compiler --local"
-      },
-      "manualInstructions": [
-        {
-          "text": "Run 'dotnet tool update dotnet tool update ghul.compiler --local' to ensure the latest version of the ghūl compiler is referenced."
-        }
-      ],
-      "continueOnError": true
-    }
-  ] 
+  ]
 }
