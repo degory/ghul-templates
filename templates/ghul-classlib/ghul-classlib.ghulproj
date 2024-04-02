@@ -4,12 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
 
     <PackageId>example.classlib</PackageId>
+    <Version>0.0.1-alpha.1</Version>
 
-    <GhulCompiler>dotnet ghul-compiler</GhulCompiler>
     <PackageOutputPath>./nupkg</PackageOutputPath>
   </PropertyGroup>
-
-  <ItemGroup>
-    <GhulSources Include="src/**/*.ghul" />
-  </ItemGroup>
 </Project>
