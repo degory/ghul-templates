@@ -15,9 +15,9 @@ namespace ClassLibTemplate.Tests is
         Given_a_TextWriter__Greeter_greet__should_write_Hello_world_to_that_writer() is
             @test()
             
-            let string_writer = new IO.StringWriter();
+            let string_writer = IO.StringWriter();
 
-            let test_object = new HELLO_WORLD_GREETER(string_writer);
+            let test_object = HELLO_WORLD_GREETER(string_writer);
 
             test_object.greet();
 
