@@ -3,17 +3,9 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <Version>0.0.1-alpha.1</Version>
-
-    <GhulCompiler>dotnet ghul-compiler</GhulCompiler>
   </PropertyGroup>
 
   <ItemGroup>
-    <GhulSources Include="**/*.ghul" />
-
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
-    <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
-
-    <PackageReference Include="example.classlib" Version="0.1.0-alpha.1" />
+    <PackageReference Include="example.classlib" Version="0.0.1-alpha.1" />
   </ItemGroup>
 </Project>
