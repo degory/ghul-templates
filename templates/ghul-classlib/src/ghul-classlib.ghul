@@ -9,6 +9,7 @@ namespace ClassLibTemplate is
         _writer: IO.TextWriter;
 
         init(writer: IO.TextWriter) is
+            assert writer? else "writer is null";
             _writer = writer;
         si
 
