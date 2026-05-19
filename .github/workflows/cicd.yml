@@ -32,7 +32,7 @@ jobs:
       contents: 'write'      
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: '0'    
 
@@ -55,7 +55,7 @@ jobs:
     needs: [version]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: .NET tool restore
       working-directory: templates/ghul-console
@@ -65,22 +65,13 @@ jobs:
       working-directory: templates/ghul-console
       run: dotnet build
 
-    - name: Run
-      id: run
+    - name: Run and verify output
       working-directory: templates/ghul-console
       run: |
         STDOUT=$(dotnet run)
-        echo "::set-output name=stdout::${STDOUT}"
+        echo "Output: ${STDOUT}"
+        test "${STDOUT}" = "Hello world!"
 
-    - name: Test
-      run: |
-        if [ "${STDOUT}" != "Hello world!" ] ; then
-          exit 1
-        fi
-
-      env:
-        STDOUT: ${{ steps.run.outputs.stdout }}
-        
   build:
     name: Build the package
     runs-on: ubuntu-latest
@@ -92,7 +83,7 @@ jobs:
     needs: [version]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Create package
       run: dotnet pack -p:Version=${{ needs.version.outputs.package }}
@@ -114,7 +105,7 @@ jobs:
     needs: [version,build]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Download template package
       uses: actions/download-artifact@v4
@@ -123,7 +114,7 @@ jobs:
         path: nupkg
 
     - name: Install templates from the package
-      run: dotnet new -i nupkg/ghul.templates.${{ needs.version.outputs.package }}.nupkg
+      run: dotnet new install nupkg/ghul.templates.${{ needs.version.outputs.package }}.nupkg
       
     - name: Create project folder
       run: mkdir project
@@ -140,21 +131,12 @@ jobs:
       run: dotnet build
       working-directory: project
 
-    - name: Run
-      id: run
+    - name: Run and verify output
+      working-directory: project
       run: |
         STDOUT=$(dotnet run)
-        echo "::set-output name=stdout::${STDOUT}"
-      working-directory: project
-
-    - name: Test
-      run: |
-        if [ "${STDOUT}" != "Hello world!" ] ; then
-          exit 1
-        fi
-      working-directory: project
-      env:
-        STDOUT: ${{ steps.run.outputs.stdout }}
+        echo "Output: ${STDOUT}"
+        test "${STDOUT}" = "Hello world!"
 
   test-classlib-template:
     name: Test the classlib template
@@ -167,7 +149,7 @@ jobs:
     needs: [version,build]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Download template package
       uses: actions/download-artifact@v4
@@ -176,13 +158,13 @@ jobs:
         path: nupkg
 
     - name: Install templates from the package
-      run: dotnet new -i nupkg/ghul.templates.${{ needs.version.outputs.package }}.nupkg
+      run: dotnet new install nupkg/ghul.templates.${{ needs.version.outputs.package }}.nupkg
       
     - name: Create project folder
       run: mkdir project
 
     - name: Instantiate the classlib template
-      run: dotnet new ghul-classlib
+      run: dotnet new ghul-classlib -n example.classlib -o .
       working-directory: project
 
     - name: Local .NET tools restore (template project)
@@ -215,7 +197,7 @@ jobs:
     needs: [test-console-template,test-classlib-template]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Download template package
       uses: actions/download-artifact@v4
@@ -238,13 +220,18 @@ jobs:
   create_release:
     needs: [version, publish-package]
     name: Create release
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     timeout-minutes: 5
     if: ${{ github.event_name == 'push' }}
 
+    permissions:
+      contents: 'write'
+
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: '0'
 
     - name: Download package
       uses: actions/download-artifact@v4
@@ -255,23 +242,11 @@ jobs:
     - name: Create changelog
       run: git log -1 --format="%s%n%n%b%n%n" >changelog.txt
 
-    - name: Create a Release
-      id: create_release
-      uses: actions/create-release@v1
+    - name: Create a release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ needs.version.outputs.tag }}
-        release_name: ${{ needs.version.outputs.tag }}
-        body_path: changelog.txt
-        draft: false
-
-    - name: Upload package asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./nupkg/ghul.templates.${{ needs.version.outputs.package }}.nupkg
-        asset_name: ghul.templates.${{ needs.version.outputs.package }}.nupkg
-        asset_content_type: application/octet-stream
+      run: |
+        gh release create "${{ needs.version.outputs.tag }}" \
+          ./nupkg/ghul.templates.${{ needs.version.outputs.package }}.nupkg \
+          --title "${{ needs.version.outputs.tag }}" \
+          --notes-file changelog.txt

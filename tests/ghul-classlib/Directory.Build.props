@@ -6,6 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="ghul.runtime" />
-    <GhulSources Include="src/**/*.ghul" />
+    <GhulSources Include="**/*.ghul" />
   </ItemGroup>
 </Project>
