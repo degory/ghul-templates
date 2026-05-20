@@ -32,7 +32,7 @@ jobs:
       contents: read
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         fetch-depth: '0'
 
@@ -80,7 +80,7 @@ jobs:
     needs: [version]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: .NET tool restore
       working-directory: templates/ghul-console
@@ -108,13 +108,13 @@ jobs:
     needs: [version]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Create package
       run: dotnet pack -p:Version=${{ needs.version.outputs.package }}
 
     - name: Upload .NET package artefact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: package
         path: nupkg
@@ -130,10 +130,10 @@ jobs:
     needs: [version,build]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Download template package
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: package
         path: nupkg
@@ -174,10 +174,10 @@ jobs:
     needs: [version,build]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Download template package
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: package
         path: nupkg
@@ -222,10 +222,10 @@ jobs:
     needs: [test-console-template,test-classlib-template]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Download template package
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: package
         path: nupkg
@@ -254,12 +254,12 @@ jobs:
       contents: 'write'
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         fetch-depth: '0'
 
     - name: Download package
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: package
         path: nupkg
