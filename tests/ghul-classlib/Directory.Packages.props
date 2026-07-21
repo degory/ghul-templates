@@ -1,6 +1,6 @@
 <Project>
   <ItemGroup>
-    <PackageVersion Include="ghul.runtime" Version="5.0.2" />
+    <PackageVersion Include="ghul.runtime" Version="5.5.1" />
     <PackageVersion Include="example.classlib" Version="0.0.1-alpha.1" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageVersion Include="MSTest.TestAdapter" Version="4.3.2" />
