@@ -1,19 +1,17 @@
 version: 2
 updates:
-  # Wrapper csproj imports ghul-console.ghulproj so Dependabot can resolve
-  # PackageVersion entries via MSBuild (it does not recognise .ghulproj).
-  - package-ecosystem: "nuget"
-    directory: "/.dependabot/"
-    schedule:
-      interval: "daily"
-
-  # .config/dotnet-tools.json + Directory.Packages.props in each template
-  # and the classlib tests, so the pinned ghul.compiler and ghul.runtime
-  # versions get bumped as new releases ship.
+  # Each template pins ghul.compiler in .config/dotnet-tools.json, which
+  # Dependabot reads directly, and ghul.runtime through Directory.Build.props
+  # plus Directory.Packages.props, which it only reads while evaluating a
+  # project file. It does not recognise .ghulproj, so each of these
+  # directories holds a stand-in .dependabot/*.csproj for that evaluation.
   - package-ecosystem: "nuget"
     directories:
       - "/templates/ghul-console"
+      - "/templates/ghul-console/.dependabot"
       - "/templates/ghul-classlib"
+      - "/templates/ghul-classlib/.dependabot"
       - "/tests/ghul-classlib"
+      - "/tests/ghul-classlib/.dependabot"
     schedule:
       interval: "daily"

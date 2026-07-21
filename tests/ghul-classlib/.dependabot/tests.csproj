@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Dependabot only reads .csproj/.vbproj/.fsproj/.proj, so it never opens the
+    .ghulproj beside this directory. This file stands in for it: the package
+    reference and its version come from the Directory.Build.props and
+    Directory.Packages.props in the parent directory, which MSBuild applies to
+    any project in this tree, so evaluating this file surfaces the same
+    dependencies the real project has. Nothing builds it.
+
+    It lives in a subdirectory rather than beside the .ghulproj so that a bare
+    `dotnet build` in the template still finds exactly one project, and it does
+    not import the .ghulproj: that project carries its own Sdk attribute, so
+    importing it would import the SDK props and targets a second time, and it
+    declares no package references of its own.
+
+    .template.config excludes this directory, so it does not reach a project
+    created from the template.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+</Project>
