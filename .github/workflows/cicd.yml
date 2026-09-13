@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container: 
-      image: mcr.microsoft.com/dotnet/sdk:10.0
+      image: mcr.microsoft.com/dotnet/sdk:11.0
 
     timeout-minutes: 10
     needs: [version]
@@ -88,7 +88,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: mcr.microsoft.com/dotnet/sdk:10.0
+      image: mcr.microsoft.com/dotnet/sdk:11.0
 
     timeout-minutes: 10
     needs: [version]
@@ -110,7 +110,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container: 
-      image: mcr.microsoft.com/dotnet/sdk:10.0
+      image: mcr.microsoft.com/dotnet/sdk:11.0
 
     timeout-minutes: 10
     needs: [version,build]
@@ -154,7 +154,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container: 
-      image: mcr.microsoft.com/dotnet/sdk:10.0
+      image: mcr.microsoft.com/dotnet/sdk:11.0
 
     timeout-minutes: 10
     needs: [version,build]
@@ -202,7 +202,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container: 
-      image: mcr.microsoft.com/dotnet/sdk:10.0
+      image: mcr.microsoft.com/dotnet/sdk:11.0
 
     timeout-minutes: 10
     needs: [test-console-template,test-classlib-template]
